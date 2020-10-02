@@ -5,8 +5,8 @@ namespace DataLayer.Configurations
 {
     public class ConfigFactory
     {
-        public static IEntityTypeConfiguration<TEntity> Create<TEntity>()
-            where TEntity : class
+        public static IEntityTypeConfiguration<TEntity> ConfigFor<TEntity>()
+            where TEntity : class, new()
         {
             var nameTypeEntity = typeof(TEntity).Name;
             var nameTypeContigClass = $"{nameTypeEntity}Config";

@@ -8,9 +8,9 @@ namespace DataLayer
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Category>());
-            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Product>());
-            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Supplier>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Category>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Product>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Supplier>());
         }
     }
 }
