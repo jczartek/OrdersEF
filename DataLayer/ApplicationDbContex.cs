@@ -1,4 +1,5 @@
 ﻿using DataLayer.Configurations;
+using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
@@ -7,9 +8,9 @@ namespace DataLayer
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new SupplierConfig());
-            modelBuilder.ApplyConfiguration(new ProductConfig());
+            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Category>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Product>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.Create<Supplier>());
         }
     }
 }
