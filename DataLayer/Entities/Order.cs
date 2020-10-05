@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer.Entities
@@ -42,5 +44,7 @@ namespace DataLayer.Entities
 
         public int ShipperId { get; set; }
         public Shipper Shipper { get; set; }
+
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

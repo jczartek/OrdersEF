@@ -20,5 +20,6 @@ namespace DataLayer.Entities
         public Supplier Supplier { get; set; }
         public int CategoryId { get; set; }
         public Category Category {get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
