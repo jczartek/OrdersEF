@@ -13,6 +13,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Supplier>());
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Shipper>());
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Employee>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Customer>());
         }
     }
 }
