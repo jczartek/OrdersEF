@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer.Entities
 {
@@ -42,5 +44,8 @@ namespace DataLayer.Entities
 
         [MaxLength(24)]
         public string Fax { get; set; }
+
+        // Relationships
+        public ICollection<Order> Orders { get; set; }
     }
 }
