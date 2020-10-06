@@ -12,7 +12,8 @@ namespace DataLayer.Configurations
 
             entity.HasOne(p => p.Manager)
                 .WithMany(p => p.Subordinates)
-                .HasForeignKey(p => p.MgrId);
+                .HasForeignKey(p => p.MgrId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             entity.HasCheckConstraint("CHK_birthdate", "([birthdate] <= CONVERT([date], sysdatetime()))");
 

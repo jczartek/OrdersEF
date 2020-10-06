@@ -22,6 +22,9 @@ namespace DataLayer.Configurations
                 .WithMany(p => p.Orders)
                 .HasForeignKey(p => p.ShipperId);
 
+            entity.Property(p => p.Freight)
+                .HasColumnType("money");
+
             entity.HasIndex(p => p.CustomerId)
                 .HasName("idx_customerid");
 
