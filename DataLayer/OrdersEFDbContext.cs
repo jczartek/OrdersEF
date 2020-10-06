@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
 {
-    public class ApplicationDbContex : DbContext
+    public class OrdersEFDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -15,6 +15,8 @@ namespace DataLayer
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
+        public OrdersEFDbContext(DbContextOptions options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Category>());
@@ -24,6 +26,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Employee>());
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Customer>());
             modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<Order>());
+            modelBuilder.ApplyConfiguration(ConfigFactory.ConfigFor<OrderDetail>());
         }
     }
 }
