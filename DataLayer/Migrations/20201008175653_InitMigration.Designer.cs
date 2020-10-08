@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(OrdersEFDbContext))]
-    [Migration("20201006161355_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20201008175653_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,7 +130,7 @@ namespace DataLayer.Migrations
                         .HasMaxLength(60);
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -148,14 +148,14 @@ namespace DataLayer.Migrations
                         .HasMaxLength(10);
 
                     b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<int>("MgrId")
+                    b.Property<int?>("MgrId")
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
@@ -203,7 +203,7 @@ namespace DataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
@@ -213,10 +213,10 @@ namespace DataLayer.Migrations
                         .HasColumnType("money");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("RequiredDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -247,7 +247,7 @@ namespace DataLayer.Migrations
                         .HasMaxLength(15);
 
                     b.Property<DateTime?>("ShippedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("ShipperId")
                         .HasColumnType("int");
@@ -441,17 +441,14 @@ namespace DataLayer.Migrations
                     b.HasOne("DataLayer.Entities.Employee", "Manager")
                         .WithMany("Subordinates")
                         .HasForeignKey("MgrId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Order", b =>
                 {
                     b.HasOne("DataLayer.Entities.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("DataLayer.Entities.Employee", "Employee")
                         .WithMany("Orders")

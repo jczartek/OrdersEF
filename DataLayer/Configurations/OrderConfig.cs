@@ -1,5 +1,6 @@
 ﻿using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataLayer.Configurations
@@ -24,6 +25,15 @@ namespace DataLayer.Configurations
 
             entity.Property(p => p.Freight)
                 .HasColumnType("money");
+
+            entity.Property(p => p.OrderDate)
+                .HasColumnType("date");
+
+            entity.Property(p => p.RequiredDate)
+                .HasColumnType("date");
+
+            entity.Property(p => p.ShippedDate)
+                .HasColumnType("date");
 
             entity.HasIndex(p => p.CustomerId)
                 .HasName("idx_customerid");

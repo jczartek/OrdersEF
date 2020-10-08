@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,15 +27,15 @@ namespace DataLayer.Migrations
                     FirstName = table.Column<string>(maxLength: 10, nullable: false),
                     Title = table.Column<string>(maxLength: 30, nullable: false),
                     TitleOfCourtesy = table.Column<string>(maxLength: 25, nullable: false),
-                    BirthDate = table.Column<DateTime>(nullable: false),
-                    HireDate = table.Column<DateTime>(nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "date", nullable: false),
+                    HireDate = table.Column<DateTime>(type: "date", nullable: false),
                     Address = table.Column<string>(maxLength: 60, nullable: false),
                     City = table.Column<string>(maxLength: 15, nullable: false),
                     Region = table.Column<string>(maxLength: 15, nullable: true),
                     PostalCode = table.Column<string>(maxLength: 10, nullable: true),
                     Country = table.Column<string>(maxLength: 15, nullable: false),
                     Phone = table.Column<string>(maxLength: 24, nullable: false),
-                    MgrId = table.Column<int>(nullable: false)
+                    MgrId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -165,9 +165,9 @@ namespace DataLayer.Migrations
                 {
                     OrderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(nullable: false),
-                    RequiredDate = table.Column<DateTime>(nullable: false),
-                    ShippedDate = table.Column<DateTime>(nullable: true),
+                    OrderDate = table.Column<DateTime>(type: "date", nullable: false),
+                    RequiredDate = table.Column<DateTime>(type: "date", nullable: false),
+                    ShippedDate = table.Column<DateTime>(type: "date", nullable: true),
                     Freight = table.Column<decimal>(type: "money", nullable: false),
                     ShipName = table.Column<string>(maxLength: 40, nullable: false),
                     ShipAddress = table.Column<string>(maxLength: 60, nullable: false),
@@ -175,7 +175,7 @@ namespace DataLayer.Migrations
                     ShipRegion = table.Column<string>(maxLength: 15, nullable: true),
                     ShipPostalCode = table.Column<string>(maxLength: 10, nullable: true),
                     ShipCountry = table.Column<string>(maxLength: 15, nullable: false),
-                    CustomerId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
                     ShipperId = table.Column<int>(nullable: false)
                 },
@@ -188,7 +188,7 @@ namespace DataLayer.Migrations
                         principalSchema: "Sales",
                         principalTable: "Customers",
                         principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Orders_Employees_EmployeeId",
                         column: x => x.EmployeeId,

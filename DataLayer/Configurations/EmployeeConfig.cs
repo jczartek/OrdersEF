@@ -15,6 +15,12 @@ namespace DataLayer.Configurations
                 .HasForeignKey(p => p.MgrId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            entity.Property(p => p.BirthDate)
+                .HasColumnType("date");
+
+            entity.Property(p => p.HireDate)
+                .HasColumnType("date");
+
             entity.HasCheckConstraint("CHK_birthdate", "([birthdate] <= CONVERT([date], sysdatetime()))");
 
             entity.HasIndex(p => p.LastName)

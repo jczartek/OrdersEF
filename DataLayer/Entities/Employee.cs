@@ -51,7 +51,7 @@ namespace DataLayer.Entities
         [MaxLength(24)]
         public string Phone { get; set; }
         // Relationships
-        public int MgrId { get; set; }
+        public int? MgrId { get; set; }
         public Employee Manager { get; set; }
         public ICollection<Employee> Subordinates { get; set; }
         public ICollection<Order> Orders { get; set; }
